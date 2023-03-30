@@ -20,17 +20,20 @@ jobs:
 
   build-and-deploy: 
     docker:
-      - image: cimg/base:2022.06
+      - image: ccimg/go:1.17
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD     
     steps: 
       - checkout      
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd
           docker build -t mthang1801/react-cicd:latest .
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin        
+          docker login -u $DOCKER_USERNAME -p DOCKER_PASSWORD
           docker push mthang1801/react-cicd:latest
 
 workflows:
