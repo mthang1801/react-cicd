@@ -3,6 +3,19 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 jobs: 
+  test: 
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      # Next, the node orb's install-packages step will install the dependencies from a package.json.
+      # The orb install-packages step will also automatically cache them for faster future runs.
+      - node/install-packages:
+          # If you are using yarn, change the line below from "npm" to "yarn"
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm test
+
   build-and-deploy: 
     docker:
       - image: cimg/base:2022.06
@@ -16,10 +29,13 @@ jobs:
 workflows:
   build-test-deploy: 
     jobs:
-      - node/test
+      - test: 
+          filters:                
+            branches: 
+              only: main
       - build-and-deploy:
           requires:
-            - node/test     
+            - test  
           filters:                
             branches: 
               only: main
