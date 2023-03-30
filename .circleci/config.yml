@@ -57,11 +57,10 @@ jobs:
       - run: 
           name: "Deploy over SSH" 
           command: |
-            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST 
+            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd /home/react-cicd/public_html"
       - run: 
           name: "Run Script Deploy"
           command: |
-            cd /home/react-cicd/public_html
             docker compose stop 
             docker compose rm -f 
             docker compose pull 
