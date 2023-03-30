@@ -1,10 +1,32 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
 orbs:
-  # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
-  # Orbs reduce the amount of configuration required for common tasks.
-  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.7
+  node: circleci/node@5.1.0
+jobs: 
+  build-and-push: 
+    docker:
+      - image: cimg/base:2022.06
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+        steps:
+        - checkout
+        - run:  
+            echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+        - run: docker build -t mthang1801/react-cicd:$CIRCLE_BRANCH .
+        - run: docker build -t mthang1801/react-cicd:latest . 
+        - run: docker push  mthang1801/react-cicd:$CIRCLE_BRANCH 
+        - run: docker push mthang1801/react-cicd:latest
+
+workflows:
+  my-workflow: 
+    jobs:
+      - node/test
+      - build-and-push
+        filters: 
+          requires:
+            - node/test            
+          branches: 
+            only: 
+            - master
 
