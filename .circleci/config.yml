@@ -28,7 +28,12 @@ jobs:
           password: $DOCKER_PASSWORD
     steps: 
       - checkout
-        
+      - run: |
+          TAG=$CIRCLE_BUILD_NUM
+          IMAGE_NAME=react-cicd
+          docker build -t mthang1801/$IMAGE_NAME:$TAG . 
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin          
+          docker push mthang1801/$IMAGE_NAME:$TAG
 
 workflows:
   build-test-deploy: 
