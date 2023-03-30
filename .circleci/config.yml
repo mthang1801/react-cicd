@@ -57,7 +57,7 @@ jobs:
       - run: 
         name: "Deploy over SSH" 
         command: |
-        ssh react-cicd@15.235.207.51 "cat /etc/os-release"
+          ssh react-cicd@15.235.207.51 "cat /etc/os-release"
   
 workflows:
   build-test-deploy: 
