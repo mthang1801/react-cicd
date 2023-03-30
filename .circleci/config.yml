@@ -23,14 +23,14 @@ jobs:
       - image: cimg/base:2022.06
         auth:
           username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+          password: $DOCKER_PASSWORD     
     steps: 
-      - checkout
+      - checkout      
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd
           docker build -t mthang1801/react-cicd:latest .
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin          
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin        
           docker push mthang1801/react-cicd:latest
 
 workflows:
