@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 jobs: 
-  build-and-push: 
+  build-and-deploy: 
     docker:
       - image: cimg/base:2022.06
         auth:
@@ -14,14 +14,13 @@ jobs:
         
 
 workflows:
-  my-workflow: 
+  build-test-deploy: 
     jobs:
       - node/test
-      - build-and-push:
+      - build-and-deploy:
         requires:
           - node/test     
         filters:                
           branches: 
-            only: 
-            - main
+            only: main
 
