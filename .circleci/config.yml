@@ -24,13 +24,16 @@ jobs:
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
+      - setup_remote_docker:
+        version: 23.0.1
+        docker_layer_caching: true
     steps: 
       - checkout
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd
           docker build -t mthang1801/react-cicd:latest .
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin          
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin        
           docker push mthang1801/react-cicd:latest
 
 workflows:
