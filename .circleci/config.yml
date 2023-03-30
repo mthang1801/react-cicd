@@ -25,10 +25,7 @@ jobs:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD     
     steps: 
-      - checkout
-      - setup_remote_docker:
-        version: 23.0.1
-        docker_layer_caching: true
+      - checkout      
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd
