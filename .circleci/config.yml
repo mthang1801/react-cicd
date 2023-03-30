@@ -19,8 +19,8 @@ jobs:
       - run: npm test
 
   build-and-deploy: 
-    machine:
-      image: ubuntu-2204:2022.04.2   
+    docker:
+      - image: circleci/cci-demo-docker-primary:0.0.2
     steps: 
       - checkout      
       - setup_remote_docker:
