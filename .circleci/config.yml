@@ -11,12 +11,7 @@ jobs:
           password: $DOCKER_PASSWORD
         steps:
         - checkout
-        - run:  
-            echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
-        - run: docker build -t mthang1801/react-cicd:$CIRCLE_BRANCH .
-        - run: docker build -t mthang1801/react-cicd:latest . 
-        - run: docker push  mthang1801/react-cicd:$CIRCLE_BRANCH 
-        - run: docker push mthang1801/react-cicd:latest
+        
 
 workflows:
   my-workflow: 
@@ -28,5 +23,5 @@ workflows:
             - node/test            
           branches: 
             only: 
-            - master
+            - main
 
