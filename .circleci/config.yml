@@ -19,11 +19,8 @@ jobs:
       - run: npm test
 
   build-and-deploy: 
-    docker:
-      - image: ccimg/go:1.17
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD     
+    machine:
+      image: ubuntu-2204:2022.04.2   
     steps: 
       - checkout      
       - setup_remote_docker:
