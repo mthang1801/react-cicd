@@ -60,11 +60,7 @@ jobs:
             ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd /home/react-cicd/public_html"
       - run: 
           name: "Run Script Deploy"
-          command: |
-            docker compose stop 
-            docker compose rm -f 
-            docker compose pull 
-            docker compose up
+          command: sh deploy.sh
   
 workflows:
   build-test-deploy: 
