@@ -18,7 +18,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests
-          command: | 
+          command: |
             npm install --force
             npm test
 
