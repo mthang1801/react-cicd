@@ -70,4 +70,10 @@ workflows:
           filters:                
             branches: 
               only: main
+      - deploy: 
+          requires:
+            - build-push-image
+          filters:                
+            branches: 
+              only: main
 
