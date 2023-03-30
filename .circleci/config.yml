@@ -39,13 +39,13 @@ jobs:
       #     command: make
       - run: |
           TAG=$CIRCLE_BUILD_NUM
-          IMAGE_NAME=react-cicd
-          docker build -t mthang1801/$IMAGE_NAME:$TAG .
-          echo $DOCKER_USER 
-          echo $DOCKER_PASS
+          IMAGE_NAME=react-cicd        
+          docker build -t $IMAGE_NAME:latest .                     
           docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push mthang1801/$IMAGE_NAME:$TAG
-
+          docker tag $IMAGE_NAME:latest $DOCKER_USER/$IMAGE_NAME:$TAG
+          docker push $DOCKER_USER/$IMAGE_NAME:$TAG
+          docker rmi $IMAGE_NAME:latest
+          docker rmi $DOCKER_USER/$IMAGE_NAME:$TAG
 workflows:
   build-test-deploy: 
     jobs:
