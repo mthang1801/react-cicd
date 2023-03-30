@@ -47,15 +47,17 @@ jobs:
           docker rmi $IMAGE_NAME:latest
           docker rmi $DOCKER_USER/$IMAGE_NAME:$TAG
 
-  deploy: 
-    docker:
-      - image: nginx:latest
+  deploy:    
+    docker: 
+      - image: cimg/base:2022.09
     steps: 
       - add_ssh_keys:
           fingerprints:
             - "48:a2:03:63:40:3c:36:1e:66:60:8c:24:1b:2f:60:1b"
-      - run: ssh -oStrictHostKeyChecking=no react-cicd@15.235.207.51
-      - run: cat /os/etc-release
+      - run: 
+          name: "Deploy over SSH" 
+          command: |
+            ssh react-cicd@15.235.207.51 "cat /etc/os-release"
   
 workflows:
   build-test-deploy: 
