@@ -18,7 +18,9 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests
-          command: npm test
+          command: | 
+            npm install --force
+            npm test
 
   build-and-deploy: 
     docker:
