@@ -47,9 +47,7 @@ jobs:
           docker rmi $IMAGE_NAME:latest
           docker rmi $DOCKER_USER/$IMAGE_NAME:$TAG
 
-  deploy: 
-    machine:
-        enabled: true
+  deploy:    
     docker: 
       - image: circleci/cci-demo-docker-primary:0.0.2
     steps: 
