@@ -18,7 +18,7 @@ jobs:
           pkg-manager: npm
       - run: npm test
 
-  build-and-deploy: 
+  build-push-image: 
     docker:
       - image: circleci/cci-demo-docker-primary:0.0.2
     steps: 
@@ -53,7 +53,7 @@ workflows:
           filters:                
             branches: 
               only: main
-      - build-and-deploy:
+      - build-push-image:
           requires:
             - test  
           filters:                
