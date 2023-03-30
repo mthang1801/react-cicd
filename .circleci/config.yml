@@ -61,8 +61,8 @@ jobs:
       - run: 
           name: "Run Script Deploy"
           command: |
-            cd /home/react-cicd/public_htmlsh 
-            deploy.sh
+            cd /home/react-cicd/public_html
+            sh deploy.sh
   
 workflows:
   build-test-deploy: 
