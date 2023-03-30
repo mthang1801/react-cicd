@@ -18,9 +18,9 @@ workflows:
     jobs:
       - node/test
       - build-and-push:
-        filters: 
-          requires:
-            - node/test            
+        requires:
+          - node/test     
+        filters:                
           branches: 
             only: 
             - main
