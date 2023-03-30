@@ -29,9 +29,9 @@ jobs:
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd
-          docker build -t mthang1801/$IMAGE_NAME:$TAG . 
+          docker build -t mthang1801/react-cicd:latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin          
-          docker push mthang1801/$IMAGE_NAME:$TAG
+          docker push mthang1801/react-cicd:latest
 
 workflows:
   build-test-deploy: 
