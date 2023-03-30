@@ -18,7 +18,7 @@ jobs:
           pkg-manager: npm
       - run: npm test
 
-  build-and-deploy: 
+  build-push-image: 
     docker:
       - image: circleci/cci-demo-docker-primary:0.0.2
     steps: 
@@ -46,6 +46,17 @@ jobs:
           docker push $DOCKER_USER/$IMAGE_NAME:$TAG
           docker rmi $IMAGE_NAME:latest
           docker rmi $DOCKER_USER/$IMAGE_NAME:$TAG
+
+  deploy: 
+    docker:
+      - image: nginx:latest
+    steps: 
+      - add_ssh_keys:
+          fingerprints:
+            - "48:a2:03:63:40:3c:36:1e:66:60:8c:24:1b:2f:60:1b"
+      - run: ssh -oStrictHostKeyChecking=no react-cicd@15.235.207.51
+      - run: cat /os/etc-release
+  
 workflows:
   build-test-deploy: 
     jobs:
@@ -53,7 +64,7 @@ workflows:
           filters:                
             branches: 
               only: main
-      - build-and-deploy:
+      - build-push-image:
           requires:
             - test  
           filters:                
