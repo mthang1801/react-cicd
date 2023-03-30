@@ -64,7 +64,7 @@ jobs:
             cd /home/react-cicd/public_html
             docker compose stop 
             docker compose rm -f 
-            docker compose down 
+            docker compose pull 
             docker compose up
   
 workflows:
