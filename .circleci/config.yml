@@ -59,7 +59,7 @@ jobs:
           name: "Run Script Deploy"
           command: |
             ls -ltr
-            cd public_html
+            cd /home/react-cicd/public_html
             sh deploy.sh
   
 workflows:
