@@ -1,7 +1,7 @@
 version: "3.8"
 services:
-  react-nginx: 
-    container_name: react-nginx
+  react-cicd: 
+    container_name: react-cicd
     build:
       context: .
       dockerfile: Dockerfile    
