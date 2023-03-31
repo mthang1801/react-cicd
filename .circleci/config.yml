@@ -40,12 +40,9 @@ jobs:
       - run: |
           TAG=$CIRCLE_BUILD_NUM
           IMAGE_NAME=react-cicd        
-          docker build -t $IMAGE_NAME:latest .                     
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker tag $IMAGE_NAME:latest $DOCKER_USER/$IMAGE_NAME:$TAG
+          docker build -t $DOCKER_USER/$IMAGE_NAME:$TAG .                     
+          docker login -u $DOCKER_USER -p $DOCKER_PASS       
           docker push $DOCKER_USER/$IMAGE_NAME:$TAG
-          docker rmi $IMAGE_NAME:latest
-          docker rmi $DOCKER_USER/$IMAGE_NAME:$TAG
 
   deploy:    
     docker: 
@@ -62,7 +59,7 @@ jobs:
           name: "Run Script Deploy"
           command: |
             ls -ltr
-            cd /home/react-cicd/public_html
+            cd public_html
             sh deploy.sh
   
 workflows:
