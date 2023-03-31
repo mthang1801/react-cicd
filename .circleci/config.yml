@@ -39,7 +39,7 @@ jobs:
       #     command: make
       - run: |
           TAG=$CIRCLE_BUILD_NUM
-          IMAGE_NAME=react-cicd        
+          IMAGE_NAME=react-circleci        
           docker build -t $DOCKER_USER/$IMAGE_NAME:$TAG .                     
           docker login -u $DOCKER_USER -p $DOCKER_PASS       
           docker push $DOCKER_USER/$IMAGE_NAME:$TAG
@@ -56,7 +56,7 @@ jobs:
       - run: 
           name: "Deploy over SSH" 
           command: |
-            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "sh scripts/react-cicd-deploy.sh"    
+            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "sh scripts/react-circleci-deploy.sh"    
   
 workflows:
   build-test-deploy: 
