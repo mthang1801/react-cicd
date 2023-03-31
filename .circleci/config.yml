@@ -43,6 +43,8 @@ jobs:
           docker build -t $DOCKER_USER/$IMAGE_NAME:$TAG .                     
           docker login -u $DOCKER_USER -p $DOCKER_PASS       
           docker push $DOCKER_USER/$IMAGE_NAME:$TAG
+          docker tag $DOCKER_USER/$IMAGE_NAME:$TAG $DOCKER_USER/$IMAGE_NAME:latest
+          docker push $DOCKER_USER/$IMAGE_NAME:latest
 
   deploy:    
     docker: 
@@ -72,7 +74,5 @@ workflows:
       - deploy: 
           requires:
             - build-push-image
-          filters:                
-            branches: 
-              only: main
+        
 
