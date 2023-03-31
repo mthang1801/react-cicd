@@ -2,14 +2,11 @@ import "./App.css";
 import logo from "./logo.svg";
 
 function App() {
-	const [curDate, setCurDate] = useState(new Date());
 	return (
 		<div className="App">
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
-				<h3 onClick={() => setCurDate(() => new Date())}>
-					Now : {curDate}
-				</h3>
+				<h3>Hello world</h3>
 				<p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
