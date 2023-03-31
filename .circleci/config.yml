@@ -54,13 +54,7 @@ jobs:
       - run: 
           name: "Deploy over SSH" 
           command: |
-            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -ltr"
-      - run: 
-          name: "Run Script Deploy"
-          command: |
-            ls -ltr
-            cd /home/react-cicd/public_html
-            sh deploy.sh
+            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "sh /home/react-cicd/public_html/deploy.sh"    
   
 workflows:
   build-test-deploy: 
