@@ -54,7 +54,7 @@ jobs:
       - run: 
           name: "Deploy over SSH" 
           command: |
-            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "uptime"
+            ssh -oStrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -ltr"
       - run: 
           name: "Run Script Deploy"
           command: |
